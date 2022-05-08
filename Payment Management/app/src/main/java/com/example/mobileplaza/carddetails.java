@@ -39,6 +39,14 @@ public class carddetails extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        btnView=findViewById(R.id.btn_paying);
+        btnView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(carddetails.this,successful.class);
+                startActivity(intent);
+            }
+        });
 
 
 

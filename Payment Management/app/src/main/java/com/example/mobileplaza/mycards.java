@@ -6,9 +6,11 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -24,6 +26,8 @@ public class mycards extends AppCompatActivity {
     EditText et_cardexp6;
     EditText et_cardcvv6;
 
+    private Button payto;
+
 
 
     @Override
@@ -36,6 +40,15 @@ public class mycards extends AppCompatActivity {
         et_cardnumber6=findViewById(R.id.et_cardnumber6);
         et_cardexp6=findViewById(R.id.et_cardexp6);
         et_cardcvv6=findViewById(R.id.et_cardcvv6);
+
+        payto=findViewById(R.id.btn_pay2);
+        payto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intents=new Intent(mycards.this,successful.class);
+                startActivity(intents);
+            }
+        });
 
     }
 
@@ -78,7 +91,7 @@ public class mycards extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {            //click index is i
 
-                String cardName = infoArray[i].split(":")[0];
+                String cardName =infoArray[i].split(":")[0];
                 String cardNum = infoArray[i].split(":")[1];          //split values auto by when click
                 String cardExp = infoArray[i].split(":")[2];
                 String cardCvv = infoArray[i].split(":")[3];

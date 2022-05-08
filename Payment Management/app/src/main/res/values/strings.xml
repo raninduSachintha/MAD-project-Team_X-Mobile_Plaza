@@ -22,6 +22,8 @@
     <string name="btn_deletetwo">deletetwo</string>
     <string name="btn_select">Select</string>
     <string name="btn_pay2">Pay</string>
+    <string name="btn_addanother2">Add Card</string>
+    <string name="btn_select2">Select Card</string>
 
 
 </resources>
