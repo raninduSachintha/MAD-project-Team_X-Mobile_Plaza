@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Mobile Plaza</string>
+    <string name="btn_card">PAY BY CARD</string>
+    <string name="btn_cash">PAY BY CASH</string>
+    <string name="tx_methods">Payment Methods</string>
+    <string name="et_cardname">Card Name</string>
+    <string name="et_cardnumber">Card Number</string>
+    <string name="et_cardexp">Month/Year</string>
+    <string name="et_cardcvv">CVV</string>
+    <string name="btn_paymethods">MY PAYMENT METHODS</string>
+    <string name="btn_paying">PAY</string>
+    <string name="btn_delete">DELETE</string>
+    <string name="btn_update">UPDATE</string>
+    <string name="btn_addanother">ADD ANOTHER CARD</string>
+    <string name="btn_home">HOME</string>
+    <string name="btn_add">Add Card</string>
+    <string name="et_cardname6" />
+    <string name="et_cardnumber6" />
+    <string name="et_cardexp6" />
+    <string name="et_cardcvv6" />
+    <string name="btn_update2">update2</string>
+    <string name="btn_deletetwo">deletetwo</string>
+    <string name="btn_select">Select</string>
+    <string name="btn_pay2">Pay</string>
+
+
+</resources>
