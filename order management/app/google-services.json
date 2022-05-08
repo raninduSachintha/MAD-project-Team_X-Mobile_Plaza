@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1055860095995",
+    "project_id": "mobilehousecard-ed3a4",
+    "storage_bucket": "mobilehousecard-ed3a4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1055860095995:android:4792ea37b27d317033295e",
+        "android_client_info": {
+          "package_name": "com.example.mobilehousecard"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1055860095995-pcrds9bettqohdfiaruja066dcejirop.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mobilehousecard",
+            "certificate_hash": "814394e331306fe07b2a9d5471a50ac1347f2513"
+          }
+        },
+        {
+          "client_id": "1055860095995-16ih8dd1q8nqoc4dbnf89ilrrvpklbm7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC8YoaulTeRibQ5QKNbw-Lqf3LQghDhnDE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1055860095995-16ih8dd1q8nqoc4dbnf89ilrrvpklbm7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
