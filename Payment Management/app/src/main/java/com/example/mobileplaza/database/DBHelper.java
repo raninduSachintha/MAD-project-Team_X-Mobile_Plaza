@@ -27,7 +27,7 @@ public class DBHelper extends SQLiteOpenHelper {   //handel all crud functions
                         UsersMaster.Users._ID+ " INTEGER PRIMARY KEY," +
                         UsersMaster.Users.col_1+ " TEXT,"+
                         UsersMaster.Users.col_2+ " INTEGER,"+           //qery for creating the table
-                        UsersMaster.Users.col_3+ " INTEGER,"+
+                        UsersMaster.Users.col_3+ " TEXT,"+
                         UsersMaster.Users.col_4+ " INTEGER)";
 
         db.execSQL(SQL_CREATE_ENTRIES);
