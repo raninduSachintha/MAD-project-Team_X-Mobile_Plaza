@@ -1,5 +1,8 @@
 package com.example.mobileplaza.database;
 
+import static com.example.mobileplaza.database.UsersMaster.Users.col_2;
+import static com.example.mobileplaza.database.UsersMaster.Users.col_4;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -26,7 +29,7 @@ public class DBHelper extends SQLiteOpenHelper {   //handel all crud functions
                 "CREATE TABLE " + UsersMaster.Users.TABLE_NAME + " (" +
                         UsersMaster.Users._ID+ " INTEGER PRIMARY KEY," +
                         UsersMaster.Users.col_1+ " TEXT,"+
-                        UsersMaster.Users.col_2+ " INTEGER,"+           //qery for creating the table
+                        UsersMaster.Users.col_2+ " TEXT,"+           //qery for creating the table
                         UsersMaster.Users.col_3+ " TEXT,"+
                         UsersMaster.Users.col_4+ " INTEGER)";
 
@@ -39,8 +42,8 @@ public class DBHelper extends SQLiteOpenHelper {   //handel all crud functions
         ContentValues values = new ContentValues();
 
         values.put(UsersMaster.Users.col_1, cname);
-        values.put(UsersMaster.Users.col_2, Integer.parseInt(cnum));            //binding values in to containValue object
-        values.put(UsersMaster.Users.col_3, Integer.parseInt(exp));             //Integer values need to represent like this,text normal way
+        values.put(UsersMaster.Users.col_2, cnum);            //binding values in to containValue object
+        values.put(UsersMaster.Users.col_3, exp);             //Integer values need to represent like this,text normal way
         values.put(UsersMaster.Users.col_4, Integer.parseInt(cacvv));
 
         return db.insert(UsersMaster.Users.TABLE_NAME, null, values);     //pasing values to insert onbild method in Sqlitedatabase package for excecuti values
@@ -60,7 +63,7 @@ public class DBHelper extends SQLiteOpenHelper {   //handel all crud functions
       };
       String sortOrder = UsersMaster.Users._ID + " DESC";    //SHOW DATA AS DESCENDING ODER,ITS GETS BY _ID
 
-        Cursor cursor = db.query(    //Cursor to retrive data from mydb
+        Cursor cursor = db.query(                 //Cursor to retrive data from mydb
                UsersMaster.Users.TABLE_NAME,
                projection,
                 null,
@@ -73,12 +76,12 @@ public class DBHelper extends SQLiteOpenHelper {   //handel all crud functions
         List info = new ArrayList<>();
 
         while (cursor.moveToNext()){
-            String Card_Name = cursor.getString(cursor.getColumnIndexOrThrow(UsersMaster.Users.col_1));   //taking strings from tables
+            String Card_Name = cursor.getString(cursor.getColumnIndexOrThrow(UsersMaster.Users.col_1));      //taking strings from tables
             String Card_Number = cursor.getString(cursor.getColumnIndexOrThrow(UsersMaster.Users.col_2));    //DATA GETS ONE BY ONE
             String Month_Year = cursor.getString(cursor.getColumnIndexOrThrow(UsersMaster.Users.col_3));
             String Cvv = cursor.getString(cursor.getColumnIndexOrThrow(UsersMaster.Users.col_4));
 
-            info.add(Card_Name+":"+Card_Number+":"+Month_Year+":"+Cvv);    //SAVE THEM IN A LIST
+            info.add(Card_Name+"\n"+Card_Number+"\n"+Month_Year+"\n"+Cvv);    //SAVE THEM IN A LIST
         }
         cursor.close();
 
@@ -103,6 +106,8 @@ public class DBHelper extends SQLiteOpenHelper {   //handel all crud functions
 
         ContentValues values = new ContentValues();     //create object like raw
 
+
+
         values.put(UsersMaster.Users.col_1, cname);
         values.put(UsersMaster.Users.col_2, cnum);                   //updating rows
         values.put(UsersMaster.Users.col_3, exp);
@@ -110,7 +115,9 @@ public class DBHelper extends SQLiteOpenHelper {   //handel all crud functions
 
         String selection = UsersMaster.Users.col_1 + " LIKE ?";
 
-        String[] selectionArgs = {cname} ;
+
+
+        String[] selectionArgs = {cname};
 
         int count = db.update(
                 UsersMaster.Users.TABLE_NAME,
@@ -120,7 +127,7 @@ public class DBHelper extends SQLiteOpenHelper {   //handel all crud functions
 
         );
 
-        Snackbar snackbar = Snackbar.make(view, count+" Rows were affected!",Snackbar.LENGTH_LONG);    //like tost msg
+        Snackbar snackbar = Snackbar.make(view, count+ " Rows were affected!",Snackbar.LENGTH_LONG);    //like tost msg
         snackbar.setAnimationMode(Snackbar.ANIMATION_MODE_SLIDE);
         snackbar.show();
 
