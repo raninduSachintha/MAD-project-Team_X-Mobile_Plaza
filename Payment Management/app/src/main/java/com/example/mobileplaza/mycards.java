@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.mobileplaza.database.DBHelper;
+import com.example.mobileplaza.database.UsersMaster;
 
 import java.util.List;
 
@@ -41,14 +42,7 @@ public class mycards extends AppCompatActivity {
         et_cardexp6=findViewById(R.id.et_cardexp6);
         et_cardcvv6=findViewById(R.id.et_cardcvv6);
 
-        payto=findViewById(R.id.btn_pay2);
-        payto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intents=new Intent(mycards.this,successful.class);
-                startActivity(intents);
-            }
-        });
+
 
     }
 
@@ -60,19 +54,38 @@ public class mycards extends AppCompatActivity {
         DBHelper dbHelper = new DBHelper(this);        //create object from DBhelper class
 
         if(cardName.isEmpty()||cardNum.isEmpty()||cardExp.isEmpty()||cardCvv.isEmpty()){    //check if someones data are the empty
-            Toast.makeText(this, "Enter values", Toast.LENGTH_LONG).show();       //yes
-        }else{
-            long inserted = dbHelper.addCard(cardName,cardNum,cardExp,cardCvv);      //add data, getting how many rows are iserted
 
-            if(inserted>0){
-                Toast.makeText(this, "Data Inserted successfully", Toast.LENGTH_LONG).show();   //if not adeed 0 rows
-                et_cardname6.setText("");
-                et_cardnumber6.setText("");
-                et_cardexp6.setText("");
-                et_cardcvv6.setText("");
-            }else{
-                Toast.makeText(this, "Something went wrong", Toast.LENGTH_LONG).show();   //adde 0 rows
-            }
+
+            Toast.makeText(this, "Enter Values", Toast.LENGTH_LONG).show();       //yes
+        }else{
+            if(cardCvv.length()==3) {
+                if(cardNum.length()==16) {
+
+                    payto=findViewById(R.id.btn_pay2);
+                    payto.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intents=new Intent(mycards.this,successful.class);
+                            startActivity(intents);
+                        }
+                    });
+
+                    long inserted = dbHelper.addCard(cardName, cardNum, cardExp, cardCvv);      //add data, getting how many rows are iserted
+
+                    if (inserted > 0) {
+                        Toast.makeText(this, "Card added successfully", Toast.LENGTH_LONG).show();   //if not adeed 0 rows
+                        et_cardname6.setText("");
+                        et_cardnumber6.setText("");
+                        et_cardexp6.setText("");
+                        et_cardcvv6.setText("");
+                    } else {
+                        Toast.makeText(this, "Something went wrong", Toast.LENGTH_LONG).show();   //adde 0 rows
+                    }
+
+                }else{Toast.makeText(this, "CARD NUMBER MUST HAVE 16 NUMBERS", Toast.LENGTH_LONG).show();}
+            }else{Toast.makeText(this, "CVV MUST HAVE 3 NUMBERS", Toast.LENGTH_LONG).show();}
+
+
         }
     }
 
@@ -91,15 +104,28 @@ public class mycards extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {            //click index is i
 
-                String cardName =infoArray[i].split(":")[0];
-                String cardNum = infoArray[i].split(":")[1];          //split values auto by when click
-                String cardExp = infoArray[i].split(":")[2];
-                String cardCvv = infoArray[i].split(":")[3];
+                String cardName =infoArray[i].split("\n")[0];
+                String cardNum = infoArray[i].split("\n")[1];          //split values auto by when click
+                String cardExp = infoArray[i].split("\n")[2];
+                String cardCvv = infoArray[i].split("\n")[3];
+
+                payto=findViewById(R.id.btn_pay2);
+                payto.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intents=new Intent(mycards.this,successful.class);
+                        startActivity(intents);
+                    }
+                });
 
                 et_cardname6.setText(cardName);
                 et_cardnumber6.setText(cardNum);             //split values auto by when click
                 et_cardexp6.setText(cardExp);
                 et_cardcvv6.setText(cardCvv);
+
+
+
+
 
             }
         });
@@ -121,16 +147,20 @@ public class mycards extends AppCompatActivity {
         String cardName = et_cardname6.getText().toString();   //search by cardname
 
         if(cardName.isEmpty()){                                             //if user did not select card
-            Toast.makeText(this, "Select a Card", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "SELECT A CARD", Toast.LENGTH_SHORT).show();
         }else{
             dbHelper.deleteInfo(cardName);                 //delete records
-            Toast.makeText(this, cardName+"Card Deleted", Toast.LENGTH_SHORT).show();
-
+            Toast.makeText(this, cardName+" CARD DELETED", Toast.LENGTH_SHORT).show();
+            et_cardname6.setText("");
+            et_cardnumber6.setText("");
+            et_cardexp6.setText("");
+            et_cardcvv6.setText("");
         }
     }
                                     //update in FN
     public void updateCard(View view){
         DBHelper dbHelper = new DBHelper(this);
+
 
 
         String cardName = et_cardname6.getText().toString();
@@ -139,15 +169,18 @@ public class mycards extends AppCompatActivity {
         String cardCvv = et_cardcvv6.getText().toString();
 
         if(cardName.isEmpty()||cardNum.isEmpty()||cardExp.isEmpty()||cardCvv.isEmpty()){
-            Toast.makeText(this, "Select or add card", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "SELECT OR ADD A CARD", Toast.LENGTH_SHORT).show();
         }else{
-            dbHelper.updateInfo(view,cardName, cardNum, cardExp, cardCvv);
+            if(cardCvv.length()==3) {
+                if(cardNum.length()==16) {
+                    dbHelper.updateInfo(view, cardName, cardNum, cardExp, cardCvv);
 
-            et_cardname6.setText("");
-            et_cardnumber6.setText("");
-            et_cardexp6.setText("");
-            et_cardcvv6.setText("");
+                    et_cardname6.setText("");
+                    et_cardnumber6.setText("");
+                    et_cardexp6.setText("");
+                    et_cardcvv6.setText("");
+                }else{ Toast.makeText(this, "CARD NUMBER MUST HAVE 16 NUMBERS", Toast.LENGTH_SHORT).show();}
+            }else{ Toast.makeText(this, "CVV MUST HAVE 3 NUMBERS", Toast.LENGTH_SHORT).show();}
         }
     }
-
 }

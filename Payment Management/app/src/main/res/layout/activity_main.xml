@@ -68,6 +68,7 @@
             android:layout_marginEnd="32dp"
             android:layout_marginRight="32dp"
             android:text="@string/btn_card"
+            android:textColor="#FFFFFF"
             app:backgroundTint="#DC143C"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView2" />
@@ -80,6 +81,7 @@
             android:layout_marginLeft="28dp"
             android:layout_marginTop="32dp"
             android:text="@string/btn_cash"
+            android:textColor="#FFFFFF"
             app:backgroundTint="#DC143C"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
